@@ -137,7 +137,7 @@ if(isset($_POST['submit'])){
     <body>
         <div style="background-color: #9FC088 " >
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><span><h2 style="text-transform:uppercase; color:aqua; font-weight:bold; font-family:Copperplate Gothic Bold Copperplate Gothic Bold; letter-spacing:0.7mm; font-size:20;">RE Consultancy</h2></span></a>
+            <a class="navbar-brand" href="home.php"><span><h2 style="text-transform:uppercase; color:aqua; font-weight:bold; font-family:Copperplate Gothic Bold Copperplate Gothic Bold; letter-spacing:0.7mm; font-size:20;">RE Consultancy</h2></span></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -297,7 +297,7 @@ if(isset($_POST['submit'])){
                     <hr class="clearfix w-100 d-md-none pb-3">
                     <!-- Grid column -->
                     <div class="col-md-3 mb-md-0 mb-3">
-                    <a href="https://www.facebook.com/" target = "-blank" class="fa fa-facebook"></a>
+                    <a href="https://www.facebook.com/" target = "_blank" class="fa fa-facebook"></a>
                         <a href="https://www.instagram.com/" target = "_blank" class="fa fa-instagram"></a>
                         <a href="https://www.linkedin.com/in/ansari-sadaan-82a191214/" target = "_blank" class="fa fa-linkedin"></a>
                         <a href="https://twitter.com/home?lang=en" target = "_blank" class="fa fa-twitter"></a>
@@ -308,13 +308,13 @@ if(isset($_POST['submit'])){
                         <h5 class="text-uppercase">Links</h5>
                         <ul class="list-unstyled">
                             <li>
-                            <a href="home.html" style="color:Teal; font-size:17px;" target = "_self">Home</a>
+                            <a href="home.php" style="color:Teal; font-size:17px;" target = "_self">Home</a>
                             </li>
                             <li>
-                            <a href="about.php" style="color:Teal; font-size:17px;">About us</a>
+                            <a href="about.php" style="color:Teal; font-size:17px;" target="_self">About us</a>
                             </li>
                             <li>
-                            <a href="buy.html" style="color:Teal; font-size:17px;" target = "_self">Buy</a>
+                            <a href="buy.php" style="color:Teal; font-size:17px;" target = "_self">Buy</a>
                             </li>
                         </ul>
                     </div>

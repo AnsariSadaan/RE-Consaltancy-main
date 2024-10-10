@@ -226,7 +226,7 @@
                                  <a href="home.php" style="color:Teal; font-size:17px;" target = "_blank">Home</a>
                                  </li>
                                  <li>
-                                 <a href="#!" style="color:Teal; font-size:17px;">About us</a>
+                                 <a href="about.php" style="color:Teal; font-size:17px;">About us</a>
                                  </li>
                                  <li>
                                  <a href="buy.php" style="color:Teal; font-size:17px;" target = "_blank">Buy</a>
