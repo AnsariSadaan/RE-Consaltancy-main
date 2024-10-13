@@ -1,10 +1,10 @@
 <?php
-  session_start();
-  $con = mysqli_connect('localhost','root');
-  mysqli_select_db($con, 're_consultancy');
-  if(!isset($_SESSION['uname'])){
+session_start();
+require 'config.php';
+if (!isset($_SESSION['uname'])) {
     header('Location: login.php');
-  }
+    exit();
+}
 ?>
 
 <html>
@@ -88,12 +88,10 @@
         </style>
     </head>
     <body>
-            <?php
-            if(isset($_SESSION['success'])){
+            <?php if (isset($_SESSION['success'])) {
                 echo $_SESSION['success'];
                 $_SESSION['success'] = '';
-            }
-            ?>
+            } ?>
     <div >
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="home.php"><span><h2 style="text-transform:uppercase; color:aqua; font-weight:bold; font-family:Copperplate Gothic Bold Copperplate Gothic Bold; letter-spacing:0.7mm; font-size:20;">RE Consultancy</h2></span></a>
@@ -133,7 +131,7 @@
         <div class="container">
             <h3 style="color:#FFF98A; font-family:TIMES NEW Roman; font-size:30PX; letter-spacing:0.1MM;"><center>
                 Welcome! <?php
-                $u1=$_SESSION['uname'];
+                $u1 = $_SESSION['uname'];
                 echo "<font color=white>@<u>$u1</u></font>";
                 ?></b>
             </h3></center>
@@ -166,95 +164,13 @@
 
 
 
+            
+            <!-- footer and modal files -->
+        <?php
+        require './screen/footer.php';
+        require './screen/modal.php';
+        ?>
+    
 
-
-      <!-- Footer -->
-        <footer class="page-footer font-small  pt-4" style="background-color: LemonChiffon;">
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-                <!-- Grid row -->
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-                        <!-- Content -->
-                        <h5 class="text-uppercase">RE Consultancy</h5>
-                        <p>We are experienced real estate professionals who buy and sell property across the nation with the primary intent of creating positive outcomes for people in predicament</p>
-                    </div>
-                    <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                        <a href="https://www.facebook.com/" target = "-blank" class="fa fa-facebook"></a>
-                        <a href="https://www.instagram.com/" target = "_blank" class="fa fa-instagram"></a>
-                        <a href="https://www.linkedin.com/in/ansari-sadaan-82a191214/" target = "_blank" class="fa fa-linkedin"></a>
-                        <a href="https://twitter.com/home?lang=en" target = "_blank" class="fa fa-twitter"></a>
-                    </div>
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                        <!-- Links -->
-                        <h5 class="text-uppercase">Links</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                            <a href="home.php" style="color:Teal; font-size:17px;" target = "_self">Home</a>
-                            </li>
-                            <li>
-                            <a href="about.php" tyle="color:Teal; font-size:17px;" >About us</a>
-                            </li>
-                            <li>
-                            <a href="buy.php" tyle="color:Teal; font-size:17px;" target = "_self">Buy</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-            <!-- Footer Links -->
-        
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3" style="background-color: moccasin;">© 2022 Copyright:
-                <a href="#">RE Consultancy | Ansari Sadaan</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-
-
-
-        
-        <!-- Modal for contact us-->
-        <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div style="background-color: rgba(0, 0, 0, 0.850);" class="modal-content">
-                <div class="modal-header">
-                    <h5 style="color:salmon;" class="modal-title" id="exampleModalLabel">Contact Us</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div  class="modal-body">
-                    <form method="POST"  action="enquiry.php" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label style="color:white;" for="name">Your Name:</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
-                        <div class="form-group">
-                          <label style="color:white;" for="exampleFormControlInput1">Your Email address</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label style="color:white;" for="exampleFormControlTextarea1">How Can we help you(description): </label>
-                          <textarea type="textarea" class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc" required></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
-                            
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-            </div>
-        </div>  
     </body>
 </html>

@@ -1,18 +1,24 @@
 <?php
+  require('config.php');
   session_start();
-  $con = mysqli_connect('localhost','root');
-  mysqli_select_db($con, 're_consultancy');
-  if(!isset($_SESSION['uname'])){
+  
+if (!isset($_SESSION['uname'])) {
     header('Location: login.php');
-  }
-    if(isset($_POST) & !empty ($_POST)){
+    exit; // It's a good practice to exit after a redirect
+}
+
+if (isset($_POST) && !empty($_POST)) {
     $cart_id = $_POST['cart_id'];
-    $con = mysqli_connect('localhost','root','','re_consultancy');
-    $uname=$_SESSION['uname'];
+
+    // No need to connect again, we already have the $con variable from config.php
+    $uname = $_SESSION['uname'];
+
+    $query = "DELETE FROM cart WHERE id = $cart_id";
+    $date = date('d-m-y');
     
-   echo  $query="DELETE  from cart where id=$cart_id";
-    $date = date('d-m-y');    
-    $result=mysqli_query($con,$query) or die(mysqli_error($con));
-    die;
-  }
-?>
+    // Execute the query
+    $result = mysqli_query($con, $query) or die(mysqli_error($con));
+
+    // Optionally, handle the result here (e.g., redirect or display a message)
+    // die; // Remove or comment this line if you want to do more after deletion
+}

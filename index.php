@@ -1,20 +1,14 @@
 <?php
-if (isset($_POST['register'])) 
-{
-    $con = mysqli_connect('localhost', 'root');
-    mysqli_select_db($con, 're_consultancy');
+require('config.php');
+if (isset($_POST['register'])) {
     $uname = $_POST['username'];
     $fname = $_POST['fname'];
     $phno = $_POST['phno'];
     $email = $_POST['email'];
     $pwd = $_POST['password'];
-
     $s = "SELECT * FROM users WHERE username =  '$uname'";
-
     $result = mysqli_query($con, $s);
-
     $num = mysqli_num_rows($result);
-
     if ($num >= 1) {
         echo '<script type="text/javascript"> ';
 
@@ -34,7 +28,6 @@ if (isset($_POST['register']))
         echo '</script>';
     }
 } ?>
-
 <html>
     <head>
         <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -112,15 +105,12 @@ if (isset($_POST['register']))
                     float:right;
                     margin-right:20%;
                 }
-                
-
         </style>
     </head>
     <body>
     <div style="background-color: #9FC088 ">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#"><span><h2 style="text-transform:uppercase; color:aqua; font-weight:bold; font-family:Copperplate Gothic Bold Copperplate Gothic Bold; letter-spacing:0.7mm; font-size:20;">RE Consultancy</h2></span></a>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -140,7 +130,6 @@ if (isset($_POST['register']))
                 </div>
             </div>
         </div><br>
-          
         <div class="container">
             <div class="text-center" style="margin-top: 2vh;">
                 <div class="imgs">
@@ -184,103 +173,26 @@ if (isset($_POST['register']))
                     <tr >
 
                     <td colspan="2">
-                             <button href="login.php" type="submit" class="btn btn-primary" name="register" value="register">Register</button>
-                     </td>
+                            <button href="login.php" type="submit" class="btn btn-primary" name="register" value="register">Register</button>
+                    </td>
                     </tr>
                         <tr class="form-group">
-                               <td colspan="2" >
-                                   <span style="color:white;">Already Have An Account?    <a id="lo" href="login.php">Login</a></span>
-                               </td>
+                                <td colspan="2" >
+                                    <span style="color:white;">Already Have An Account?    <a id="lo" href="login.php">Login</a></span>
+                                </td>
                         </tr>
                 </table>
 
-             </form>
+            </form>
             </div>
         </div>
         </div>      
         <br>      
-      <!-- Footer -->
-        <footer class="page-footer font-small  pt-4" style="background-color: LemonChiffon;">
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-                <!-- Grid row -->
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-                        <!-- Content -->
-                        <h5 class="text-uppercase">RE Consultancy</h5>
-                        <p>We are experienced real estate professionals who buy and sell property across the nation with the primary intent of creating positive outcomes for people in predicament</p>
-                    </div>
-                    <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                    <a href="https://www.facebook.com/" target = "-blank" class="fa fa-facebook"></a>
-                        <a href="https://www.instagram.com/" target = "_blank" class="fa fa-instagram"></a>
-                        <a href="https://www.linkedin.com/in/ansari-sadaan-82a191214/" target = "_blank" class="fa fa-linkedin"></a>
-                        <a href="https://twitter.com/home?lang=en" target = "_blank" class="fa fa-twitter"></a>
-                    </div>
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                        <!-- Links -->
-                        <h5 class="text-uppercase">Links</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                            <a href="home.php" style="color:Teal; font-size:17px;" target = "_self">Home</a>
-                            </li>
-                            <li>
-                            <a href="about.php"  style="color:Teal; font-size:17px;">About us</a>
-                            </li>
-                            <li>
-                            <a href="buy.php" style="color:Teal; font-size:17px;" target = "_self">Buy</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-            <!-- Footer Links -->
         
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3" style="background-color: moccasin;">© 2022 Copyright:
-                <a href="#">RE Consultancy | Ansari Sadaan</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-        <!-- Modal for contact us-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Your Name:</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlInput1">Your Email address</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleFormControlTextarea1">How Can we help you(description): </label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-            </div>
-        </div>  
+        <!-- footer and modal files -->
+        <?php
+        require './screen/footer.php';
+        require './screen/modal.php';
+        ?>
     </body>
 </html>

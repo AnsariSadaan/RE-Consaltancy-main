@@ -1,19 +1,18 @@
 <?php
-  session_start();
-  $con = mysqli_connect('localhost','root');
-  mysqli_select_db($con, 're_consultancy');
-  if(!isset($_SESSION['uname'])){
+session_start();
+require 'config.php';
+if (!isset($_SESSION['uname'])) {
     header('Location: login.php');
-  }
-    if(isset($_POST) & !empty ($_POST)){
+}
+if (isset($_POST) & !empty($_POST)) {
     $wishlist_id = $_POST['order_id'];
-    $con = mysqli_connect('localhost','root','','re_consultancy');
-    $uname=$_SESSION['uname'];
-    
-    $query="DELETE  from wishlist where id=$wishlist_id";
-    $date = date('d-m-y');    
-    $result=mysqli_query($con,$query) or die(mysqli_error());
-  }
+    $con = mysqli_connect('localhost', 'root', '', 're_consultancy');
+    $uname = $_SESSION['uname'];
+
+    $query = "DELETE  from wishlist where id=$wishlist_id";
+    $date = date('d-m-y');
+    ($result = mysqli_query($con, $query)) or die(mysqli_error($con));
+}
 ?>
 
 <html>
@@ -122,134 +121,69 @@
 
 <div class="row">
 <?php
-    $con = mysqli_connect('localhost','root','','re_consultancy');
-    $uname=$_SESSION['uname'];
-    
-    $query="SELECT sellers.*, wishlist.id as 'wishlist_id' , wishlist.order_id FROM sellers 
-    Inner join wishlist ON sellers.id = wishlist.order_id WHERE wishlist.user_id = '".$_SESSION['id']."'
+$uname = $_SESSION['uname'];
+$query =
+    "SELECT sellers.*, wishlist.id as 'wishlist_id' , wishlist.order_id FROM sellers 
+    Inner join wishlist ON sellers.id = wishlist.order_id WHERE wishlist.user_id = '" .
+    $_SESSION['id'] .
+    "'
     ORDER BY sellers.updated_on Desc";
-        
-    $result=mysqli_query($con,$query) or die(mysqli_error());
 
-    while($row=mysqli_fetch_array($result)){
-    echo'    
+($result = mysqli_query($con, $query)) or die(mysqli_error($con));
+
+while ($row = mysqli_fetch_array($result)) {
+    echo '    
     <div class="col s4">
         <div class="card" style="width: 24rem; height:auto;">
-            <p style="text-align:center; font-size:20px; color:crimson; padding-top:0.5%; font-weight:900; text-transform:uppercase; font-family:serif;" >'.$row['city'].' </p>
-            <img style="padding:1%; margin-left:5.4%; width:340; height:250;"class="card-img-top" src="images/'.$row['image'].'" alt="Card image cap">
+            <p style="text-align:center; font-size:20px; color:crimson; padding-top:0.5%; font-weight:900; text-transform:uppercase; font-family:serif;" >' .
+        $row['city'] .
+        ' </p>
+            <img style="padding:1%; margin-left:5.4%; width:340; height:250;"class="card-img-top" src="images/' .
+        $row['image'] .
+        '" alt="Card image cap">
              <div class="card-body" style="overflow: auto;">
-                        <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Property Status: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> '.$row['prostatus'].'</p>
-                     <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Property Type: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> '.$row['protype'].'</p>
-                     <p><span style="font-weight:900; color:black;   font-size:19px; font-family:times new roman;">Typology: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> '.$row['typo'].'</p>
-                    <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Price in Sq / Ft: </span><span style="font-size:19px; font-family:times new roman; color:black;">'.$row['price'].'</p>
-                    <p ><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Address: </span><span style=" font-size:19px; font-family:times new roman; color:black;">'.$row['address'].', '.$row['city'].'</p>
-                    <button type="button"  class="btn btn-primary cart" name="add_to_wishlist" wishlist_id='.$row['wishlist_id'].' order_id='.$row['order_id'].' >Add to Cart</button>
-                    <a wishlist_id='.$row['wishlist_id'].' order_id='.$row['order_id'].' type="button" style="color: white" class="btn btn-primary remove" name="remove" value="submit">Remove</a>
+                        <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Property Status: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> ' .
+        $row['prostatus'] .
+        '</p>
+                     <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Property Type: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> ' .
+        $row['protype'] .
+        '</p>
+                     <p><span style="font-weight:900; color:black;   font-size:19px; font-family:times new roman;">Typology: </span><span style=" font-size:19px; font-family:times new roman; color:black;"> ' .
+        $row['typo'] .
+        '</p>
+                    <p><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Price in Sq / Ft: </span><span style="font-size:19px; font-family:times new roman; color:black;">' .
+        $row['price'] .
+        '</p>
+                    <p ><span style="font-weight:900; color:black;  font-size:19px; font-family:times new roman;">Address: </span><span style=" font-size:19px; font-family:times new roman; color:black;">' .
+        $row['address'] .
+        ', ' .
+        $row['city'] .
+        '</p>
+                    <button type="button"  class="btn btn-primary cart" name="add_to_wishlist" wishlist_id=' .
+        $row['wishlist_id'] .
+        ' order_id=' .
+        $row['order_id'] .
+        ' >Add to Cart</button>
+                    <a wishlist_id=' .
+        $row['wishlist_id'] .
+        ' order_id=' .
+        $row['order_id'] .
+        ' type="button" style="color: white" class="btn btn-primary remove" name="remove" value="submit">Remove</a>
              </div>
         </div><br><br>
     </div>';
-    }
-    ?>
+}
+?>
     
 </div>
 
 </div>
 
-    
-
-        
-<!-- yeh line maine line no 123 se hataya hu -->
-<!-- -  -->
-            <!-- '.$row['fname'].'('.$row['username'].') -->
-
-      <!-- Footer -->
-        <footer class="page-footer font-small  pt-4" style="background-color: LemonChiffon;">
-            <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
-                <!-- Grid row -->
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-                        <!-- Content -->
-                        <h5 class="text-uppercase">RE Consultancy</h5>
-                        <p>We are experienced real estate professionals who buy and sell property across the nation with the primary intent of creating positive outcomes for people in predicament</p>
-                    </div>
-                    <!-- Grid column -->
-                    <hr class="clearfix w-100 d-md-none pb-3">
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                    <a href="https://www.facebook.com/" target = "-blank" class="fa fa-facebook"></a>
-                        <a href="https://www.instagram.com/" target = "_blank" class="fa fa-instagram"></a>
-                        <a href="https://www.linkedin.com/in/ansari-sadaan-82a191214/" target = "_blank" class="fa fa-linkedin"></a>
-                        <a href="https://twitter.com/home?lang=en" target = "_blank" class="fa fa-twitter"></a>
-                    </div>
-                    <!-- Grid column -->
-                    <div class="col-md-3 mb-md-0 mb-3">
-                        <!-- Links -->
-                        <h5 class="text-uppercase">Links</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                            <a href="home.php" tyle="color:Teal; font-size:17px;" target = "_self">Home</a>
-                            </li>
-                            <li>
-                            <a href="about.php" tyle="color:Teal; font-size:17px;" target = "_self">About us</a>
-                            </li>
-                            <li>
-                            <a href="buy.php" tyle="color:Teal; font-size:17px;" target = "_self">Buy</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Grid column -->
-                </div>
-                <!-- Grid row -->
-            </div>
-            <!-- Footer Links -->
-        
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3" style="background-color: #212b32b1;">© 2022 Copyright:
-                <a href="mywishlist.php">RE Consultancy | Ansari Sadaan</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
-
-
-
-        
-        <!-- Modal for contact us-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div style="background-color: rgba(0, 0, 0, 0.850);" class="modal-content">
-                <div class="modal-header">
-                    <h5 style="color:salmon;" class="modal-title" id="exampleModalLabel">Contact Us</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form  method="POST" action="enquiry.php" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label style="color:white;" for="name">Your Name:</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
-                        <div class="form-group">
-                          <label style="color:white;" for="exampleFormControlInput1">Your Email address</label>
-                          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label style="color:white;" for="exampleFormControlTextarea1">How Can we help you(description): </label>
-                          <textarea type="textarea" class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc" required></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
-                            
-                        </div>
-                    </form>
-                </div>
-                
-            </div>
-            </div>
-        </div> 
+      <!-- footer and modal files -->
+        <?php
+        require './screen/footer.php';
+        require './screen/modal.php';
+        ?>
         <script type="text/javascript">
     $(document).ready(function(){
         $(".button").click(function(){

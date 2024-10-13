@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    $con = mysqli_connect('localhost', 'root', '', 're_consultancy');
+    require('config.php');
     
     $name = $_POST['name']; 
     $email = $_POST['email'];
